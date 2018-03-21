@@ -123,7 +123,7 @@ class BRCDataset(object):
             for pidx in range(max_passage_num):
                 if pidx < len(sample['passages']):
                     batch_data['question_token_ids'].append(sample['question_token_ids'])
-                    batch_data['question_length'].append(len(sample['question_token_ids']))
+                    batch_data['question_length'].append(min(len(sample['question_token_ids']), self.max_q_len))
                     passage_token_ids = sample['passages'][pidx]['passage_token_ids']
                     batch_data['passage_token_ids'].append(passage_token_ids)
                     batch_data['passage_length'].append(min(len(passage_token_ids), self.max_p_len))
